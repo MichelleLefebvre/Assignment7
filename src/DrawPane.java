@@ -9,10 +9,7 @@
 
 //import any classes necessary here
 //----
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Shape;
 import javafx.scene.shape.Rectangle;
@@ -36,6 +33,9 @@ public class DrawPane extends BorderPane
     private RadioButton rbRect, rbCircle;
     private ArrayList<Shape> shapeList;
     private Pane canvas;
+
+    private String colorPick;
+    private String shape;
     //declare any other necessary instance variables here
     //----
 
@@ -95,6 +95,8 @@ public class DrawPane extends BorderPane
         //the layout
         //----
         //----
+        colorPick = "Black";
+        shape = "rectangle";
         VBox vb = new VBox();
 
         vb.setSpacing(35);
@@ -119,9 +121,15 @@ public class DrawPane extends BorderPane
 
 
         //Step #3: Register the source nodes with its handler objects
+        ShapeHandler sh = new ShapeHandler();
+        ButtonHandler bh = new ButtonHandler();
+        ColorHandler ch = new ColorHandler();
         canvas.setOnMousePressed(new MouseHandler());
-        //----
-        //----
+        rbCircle.setOnAction(sh);
+        rbCircle.setOnAction(sh);
+        eraseBtn.setOnAction(bh);
+        undoBtn.setOnAction(bh);
+        colorCombo.setOnAction(ch);
 
 
     }
@@ -138,17 +146,21 @@ public class DrawPane extends BorderPane
             //----
             if(event.getEventType() == MouseEvent.MOUSE_PRESSED)
             {
-                if(rbRect.isSelected() == true)
-                {
-                    Rectangle rect = new Rectangle();
-                    //String color = colorCombo.getSelectionModel().getSelectedItem();
+                Rectangle rect = new Rectangle();
+                if(rbRect.isSelected() == true) {
+                    System.out.print("rectangle");
+
+
                     rect.setX(event.getX());
                     rect.setY(event.getY());
-                    rect.setWidth(MOU);
-                    /**color.toUpperCase();
-                    rect.setStroke(Color.BLACK);
-                    rect.setFill();
-                     **/
+                    rect.setWidth(100);
+                    rect.setHeight(100);
+                    canvas.getChildren().add(rect);
+                }
+                else if(event.getEventType() == MouseEvent.MOUSE_DRAGGED)
+                {
+                    rect.setWidth(rect.getScene().getX() - rect.getX());
+                    rect.setHeight(rect.getS);
                 }
             }
 
@@ -165,7 +177,14 @@ public class DrawPane extends BorderPane
         {
             //write your codes here
             //----
-
+            if(event.getSource() == undoBtn)
+            {
+                shapeList.remove(shapeList.size()-1);
+            }
+            else if(event.getSource() == eraseBtn)
+            {
+                shapeList.removeAll(shapeList);
+            }
 
 
         }
@@ -178,7 +197,14 @@ public class DrawPane extends BorderPane
         {
             //write your own codes here
             //----
-
+            if(event.getSource() == rbCircle)
+            {
+                shape = "circle";
+            }
+            else
+            {
+                shape = "rectangle";
+            }
 
 
         }
@@ -189,8 +215,7 @@ public class DrawPane extends BorderPane
     {
         public void handle(ActionEvent event)
         {
-            //write your own codes here
-            //----
+            colorPick = colorCombo.getSelectionModel().getSelectedItem();
 
         }
     }//end ColorHandler
