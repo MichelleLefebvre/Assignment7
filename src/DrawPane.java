@@ -26,6 +26,8 @@ import javafx.scene.text.FontWeight;
 
 import java.util.ArrayList;
 
+import static javafx.scene.paint.Color.*;
+
 public class DrawPane extends BorderPane
 {
     private Button undoBtn, eraseBtn;
@@ -34,7 +36,7 @@ public class DrawPane extends BorderPane
     private ArrayList<Shape> shapeList;
     private Pane canvas;
 
-    private String colorPick;
+    private Color colorPick;
     private String shape;
     //declare any other necessary instance variables here
     //----
@@ -42,7 +44,7 @@ public class DrawPane extends BorderPane
     //Constructor
     public DrawPane()
     {
-        Border border = new Border(new BorderStroke(Color.BLACK,
+        Border border = new Border(new BorderStroke(BLACK,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
         Font font = new Font("Arial", 14 );
 
@@ -95,7 +97,7 @@ public class DrawPane extends BorderPane
         //the layout
         //----
         //----
-        colorPick = "Black";
+        colorPick = BLACK;
         shape = "rectangle";
         VBox vb = new VBox();
 
@@ -144,28 +146,37 @@ public class DrawPane extends BorderPane
             //to check whether the mouse key is pressed, dragged or released
             //write your own codes here
             //----
-            if(event.getEventType() == MouseEvent.MOUSE_PRESSED)
+            if(shape == "rectangle")
             {
                 Rectangle rect = new Rectangle();
-                if(rbRect.isSelected() == true) {
+
+                if(event.getEventType() == MouseEvent.MOUSE_PRESSED)
+                {
                     System.out.print("rectangle");
 
 
                     rect.setX(event.getX());
                     rect.setY(event.getY());
-                    rect.setWidth(100);
-                    rect.setHeight(100);
-                    canvas.getChildren().add(rect);
+
                 }
                 else if(event.getEventType() == MouseEvent.MOUSE_DRAGGED)
                 {
-                    rect.setWidth(rect.getScene().getX() - rect.getX());
-                    rect.setHeight(rect.getS);
+                    rect.setWidth(event.getSceneX());
+                    rect.setHeight(event.getSceneY());
+                    rect.setFill(WHITE);
+                }
+
+                else if(event.getEventType() == MouseEvent.MOUSE_RELEASED)
+                {
+                    rect.setFill(colorPick);
+                    shapeList.add(rect);
                 }
             }
 
 
 
+            canvas.getChildren().addAll(shapeList);
+           // canvas.getChildren()
 
         }//end handle()
     }//end MouseHandler
@@ -215,7 +226,8 @@ public class DrawPane extends BorderPane
     {
         public void handle(ActionEvent event)
         {
-            colorPick = colorCombo.getSelectionModel().getSelectedItem();
+
+            colorPick = Color.web(colorCombo.getSelectionModel().getSelectedItem().toUpperCase());
 
         }
     }//end ColorHandler
