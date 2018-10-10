@@ -127,6 +127,8 @@ public class DrawPane extends BorderPane
         ButtonHandler bh = new ButtonHandler();
         ColorHandler ch = new ColorHandler();
         canvas.setOnMousePressed(new MouseHandler());
+        canvas.setOnMouseDragged(new MouseHandler());
+        canvas.setOnMouseReleased(new MouseHandler());
         rbCircle.setOnAction(sh);
         rbCircle.setOnAction(sh);
         eraseBtn.setOnAction(bh);
@@ -159,15 +161,21 @@ public class DrawPane extends BorderPane
                     rect.setY(event.getY());
 
                 }
+
                 else if(event.getEventType() == MouseEvent.MOUSE_DRAGGED)
                 {
-                    rect.setWidth(event.getSceneX());
-                    rect.setHeight(event.getSceneY());
+                    rect.setOnDragDetected(new MouseHandler());
+                    System.out.println("dragged");
+
+
+                    rect.setWidth(100);
+                    rect.setHeight(100);
                     rect.setFill(WHITE);
                 }
 
                 else if(event.getEventType() == MouseEvent.MOUSE_RELEASED)
                 {
+                    System.out.println("released");
                     rect.setFill(colorPick);
                     shapeList.add(rect);
                 }
@@ -175,7 +183,7 @@ public class DrawPane extends BorderPane
 
 
 
-            canvas.getChildren().addAll(shapeList);
+            //canvas.getChildren().addAll(shapeList);
            // canvas.getChildren()
 
         }//end handle()
