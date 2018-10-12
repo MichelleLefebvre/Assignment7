@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8337a836-35a4-4686-87c0-dbd902a226c9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment7/DrawPane$ButtonHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment7/DrawPane$ButtonHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment7/DrawPane$ColorHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment7/DrawPane$ColorHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment7/DrawPane$MouseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment7/DrawPane$MouseHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment7/DrawPane$ShapeHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment7/DrawPane$ShapeHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment7/DrawPane.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment7/DrawPane.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DrawPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawPane.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -35,10 +30,11 @@
       <file leaf-file-name="DrawPane.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DrawPane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2618">
-              <caret line="171" column="40" lean-forward="true" selection-start-line="171" selection-start-column="40" selection-end-line="171" selection-end-column="40" />
+            <state relative-caret-position="35">
+              <caret line="220" column="40" lean-forward="true" selection-start-line="220" selection-start-column="40" selection-end-line="220" selection-end-column="40" />
               <folding>
                 <element signature="e#0#3542#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,9 +60,15 @@
       </list>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="465" />
-    <option name="y" value="37" />
+    <option name="x" value="525" />
+    <option name="y" value="-26" />
     <option name="width" value="980" />
     <option name="height" value="971" />
   </component>
@@ -193,11 +195,19 @@
       <option name="project" value="LOCAL" />
       <updated>1539068300979</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="mouse events register press, drag, release detected">
+      <created>1539131346136</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1539131346136</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="0" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -206,15 +216,15 @@
       <window_info id="Image Layers" />
       <window_info anchor="right" id="Capture Analysis" order="2" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.15205725" />
+      <window_info anchor="right" id="Maven Projects" order="3" visible="true" weight="0.0" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Terminal" weight="0.0" />
       <window_info id="Capture Tool" />
       <window_info id="Designer" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.0" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="7" visible="true" weight="8.097166E-4" />
+      <window_info anchor="right" id="Ant Build" order="7" weight="8.097166E-4" />
       <window_info id="UI Designer" />
       <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.0" />
@@ -233,7 +243,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="button handler finished color handler and shape handler finished" />
     <MESSAGE value="mouse event started" />
-    <option name="LAST_COMMIT_MESSAGE" value="mouse event started" />
+    <MESSAGE value="mouse events register press, drag, release detected" />
+    <option name="LAST_COMMIT_MESSAGE" value="mouse events register press, drag, release detected" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -252,10 +263,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DrawPane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2618">
-          <caret line="171" column="40" lean-forward="true" selection-start-line="171" selection-start-column="40" selection-end-line="171" selection-end-column="40" />
+        <state relative-caret-position="35">
+          <caret line="220" column="40" lean-forward="true" selection-start-line="220" selection-start-column="40" selection-end-line="220" selection-end-column="40" />
           <folding>
             <element signature="e#0#3542#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

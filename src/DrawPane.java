@@ -218,7 +218,7 @@ public class DrawPane extends BorderPane
             //----
             if(event.getSource() == rbCircle)
             {
-                shape = "circle";
+                shape = new Shape(Circle);
             }
             else
             {
@@ -235,8 +235,8 @@ public class DrawPane extends BorderPane
         public void handle(ActionEvent event)
         {
 
-            colorPick = Color.web(colorCombo.getSelectionModel().getSelectedItem().toUpperCase());
-
+            colorPick = Color.valueOf(colorCombo.getSelectionModel().getSelectedItem().toUpperCase());
+            System.out.println(colorPick);
         }
     }//end ColorHandler
 
