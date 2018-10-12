@@ -35,9 +35,13 @@ public class DrawPane extends BorderPane
     private RadioButton rbRect, rbCircle;
     private ArrayList<Shape> shapeList;
     private Pane canvas;
-
     private Color colorPick;
     private String shape;
+    private Rectangle rect = null;
+    private Circle circle = null;
+    private int shapeCounter = 0;
+
+
     //declare any other necessary instance variables here
     //----
 
@@ -89,7 +93,7 @@ public class DrawPane extends BorderPane
         //canvas is a Pane where we will draw rectagles and circles on it
         canvas = new Pane();
         canvas.setStyle("-fx-background-color: beige;");
-        canvas.setMinSize(450, 350);
+        //canvas.setMinSize(450, 200);
         canvas.setPadding(new Insets(15, 15,15,10));
         canvas.setBorder(border);
 
@@ -126,9 +130,10 @@ public class DrawPane extends BorderPane
         ShapeHandler sh = new ShapeHandler();
         ButtonHandler bh = new ButtonHandler();
         ColorHandler ch = new ColorHandler();
-        canvas.setOnMousePressed(new MouseHandler());
-        canvas.setOnMouseDragged(new MouseHandler());
-        canvas.setOnMouseReleased(new MouseHandler());
+        MouseHandler mh = new MouseHandler();
+        canvas.setOnMousePressed(mh);
+        canvas.setOnMouseDragged(mh);
+        canvas.setOnMouseReleased(mh);
         rbCircle.setOnAction(sh);
         rbCircle.setOnAction(sh);
         eraseBtn.setOnAction(bh);
@@ -141,45 +146,91 @@ public class DrawPane extends BorderPane
     //Step #2(A) - MouseHandler
     private class MouseHandler implements EventHandler<MouseEvent>
     {
+
         public void handle(MouseEvent event)
         {
+
+
             //handle MouseEvent here
             //Note: you can use if(event.getEventType()== MouseEvent.MOUSE_PRESSED)
             //to check whether the mouse key is pressed, dragged or released
             //write your own codes here
             //----
+
+
             if(shape == "rectangle")
             {
-                Rectangle rect = new Rectangle();
+
+
 
                 if(event.getEventType() == MouseEvent.MOUSE_PRESSED)
                 {
-                    System.out.print("rectangle");
+                    rect = new Rectangle();
+                    rect.setVisible(true);
+                    rect.setTranslateX(event.getX());
+                    rect.setTranslateY(event.getY());
+                    //rect.setTranslateX(event.getX());
+                    //rect.setTranslateY(event.getY());
 
-
-                    rect.setX(event.getX());
-                    rect.setY(event.getY());
 
                 }
 
                 else if(event.getEventType() == MouseEvent.MOUSE_DRAGGED)
                 {
-                    rect.setOnDragDetected(new MouseHandler());
-                    System.out.println("dragged");
+                    //rect.setX(rect.getTranslateX());
+                    //rect.setY(rect.getTranslateY());
+                    rect.setWidth(event.getX() - rect.getTranslateX());
+                    rect.setHeight(event.getY() - rect.getTranslateY());
+                    rect.setStroke(BLACK);
 
-
-                    rect.setWidth(100);
-                    rect.setHeight(100);
                     rect.setFill(WHITE);
+                    if(canvas.getChildren().contains(rect))
+                    {
+                        canvas.getChildren().remove(canvas.getChildren().size() - 1);
+                    }
+                    canvas.getChildren().add(rect);
+
+
                 }
 
                 else if(event.getEventType() == MouseEvent.MOUSE_RELEASED)
                 {
-                    System.out.println("released");
                     rect.setFill(colorPick);
+
+                    System.out.println(shapeList.size());
+                    System.out.println(canvas.getChildren());
+                    canvas.getChildren().clear();
                     shapeList.add(rect);
+                    canvas.getChildren().addAll(shapeList);
+
                 }
+
+
             }
+            else if(shape == "circle")
+            {
+
+                if(event.getEventType() == MouseEvent.MOUSE_PRESSED)
+                {
+
+                    circle = new Circle();
+                    circle.setCenterX(event.getX());
+                    circle.setCenterY(event.getY());
+                }
+
+                else if(event.getEventType() == MouseEvent.MOUSE_DRAGGED)
+                {
+
+
+                }
+
+                else if(event.getEventType() == MouseEvent.MOUSE_RELEASED)
+                {
+
+                }
+
+            }
+
 
 
 
@@ -199,10 +250,15 @@ public class DrawPane extends BorderPane
             if(event.getSource() == undoBtn)
             {
                 shapeList.remove(shapeList.size()-1);
+                System.out.println(shapeList.size());
+                canvas.getChildren().removeAll();
+                canvas.getChildren().addAll(shapeList);
             }
             else if(event.getSource() == eraseBtn)
             {
                 shapeList.removeAll(shapeList);
+                canvas.getChildren().removeAll();
+                canvas.getChildren().addAll(shapeList);
             }
 
 
@@ -218,7 +274,7 @@ public class DrawPane extends BorderPane
             //----
             if(event.getSource() == rbCircle)
             {
-                shape = new Shape(Circle);
+                shape = "circle";
             }
             else
             {
